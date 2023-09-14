@@ -1,0 +1,14 @@
+{
+  "form.button.update": "Update",
+  "form.button.loading": "Loading ...",
+  "form.button.reset": "Reset",
+  "form.button.submit": "Submit",
+  "form.textarea.placeholder": "Type your input",
+  "form.textarea.tooltip": "Copied",
+  "instruction.description": "You have the option to choose between different types, including bug reports, user stories, tasks, or documentation. Each type serves a specific purpose and comes with its own unique context and structure. The content generated will be in markdown format, ensuring compatibility with various tools and platforms - ie. Jira, Confluence, etc.",
+  "instruction.title": "Create Scrum Content",
+  "form.select.hint": "Select prompt type in order to create content",
+  "form.select.title": "Prompt type",
+  "tab.update": "Update",
+  "tab.preview": "Preview"
+}

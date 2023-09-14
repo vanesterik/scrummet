@@ -1,0 +1,22 @@
+{
+  "bug": {
+    "label": "Bug",
+    "name": "bug",
+    "prompt": "Please describe the bug you found."
+  },
+  "documentation": {
+    "label": "Documentation",
+    "name": "documentation",
+    "prompt": "Please describe the document you have."
+  },
+  "story": {
+    "name": "story",
+    "label": "Story",
+    "prompt": "Please describe the story you would like to see."
+  },
+  "task": {
+    "name": "task",
+    "label": "Task",
+    "prompt": "Please describe the task you would like to see."
+  }
+}
