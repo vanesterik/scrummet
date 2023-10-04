@@ -3,27 +3,61 @@ import { ButtonHTMLAttributes } from 'react'
 
 const button = cva(
   cx(
-    'border',
-    'border-gray-500',
-    'flex',
-    'flex-row',
-    'gap-x-2',
-    'items-center',
-    'justify-center',
-    'min-w-[120px]',
-    'px-4',
-    'py-2',
+    'cursor-pointer',
+    'font-semibold',
+    'select-none',
     'rounded-md',
+    'focus:outline',
+    'focus:outline-1',
+    'focus:outline-base-300',
+    'focus:outline-offset-2',
+    'dark:focus:outline-dark-base-300',
   ),
   {
     variants: {
-      intent: {
-        primary: ['bg-green-600', 'text-white', 'hover:bg-green-700'],
-        secondary: ['bg-gray-50', 'hover:bg-gray-100'],
+      variant: {
+        primary: [
+          'bg-primary',
+          'text-primary-content',
+          'hover:bg-primary-focus',
+          'dark:bg-dark-primary',
+          'dark:text-dark-primary-content',
+          'dark:hover:bg-dark-primary-focus',
+        ],
+        secondary: [
+          'bg-secondary',
+          'text-secondary-content',
+          'hover:bg-secondary-focus',
+          'dark:bg-dark-secondary',
+          'dark:text-dark-secondary-content',
+          'dark:hover:bg-dark-secondary-focus',
+          'dark:hover:border-dark-secondary-focus',
+        ],
+        ghost: [
+          'bg-transparent',
+          'text-secondary-content',
+          'hover:bg-secondary-focus',
+          'dark:bg-transparent',
+          'dark:text-dark-secondary-content',
+          'dark:hover:bg-dark-secondary-focus',
+        ],
+        link: [
+          'bg-transparent',
+          'text-base-content',
+          'hover:opacity-80',
+          'dark:bg-transparent',
+          'dark:text-dark-base-content',
+        ],
+      },
+      size: {
+        small: ['px-3', 'py-2', 'text-xs'],
+        medium: ['px-4', 'py-3', 'text-sm'],
+        large: ['px-6', 'py-4', 'text-md'],
       },
     },
     defaultVariants: {
-      intent: 'primary',
+      variant: 'secondary',
+      size: 'medium',
     },
   },
 )
@@ -31,8 +65,9 @@ const button = cva(
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof button>
 
-export const Button = ({ children, intent, type }: ButtonProps) => (
-  <button className={button({ intent })} type={type}>
-    {children}
-  </button>
-)
+export const Button = ({
+  size,
+  variant,
+  // eslint-disable-next-line fp/no-rest-parameters
+  ...rest
+}: ButtonProps) => <button className={button({ size, variant })} {...rest} />

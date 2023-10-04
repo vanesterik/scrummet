@@ -1,7 +1,7 @@
 import { cva, cx, type VariantProps } from 'class-variance-authority'
 import { PropsWithChildren } from 'react'
 
-const section = cva(cx('flex'), {
+const stack = cva(cx('flex'), {
   variants: {
     alignment: {
       left: [],
@@ -40,8 +40,8 @@ const section = cva(cx('flex'), {
   },
 })
 
-type SectionProps = PropsWithChildren<VariantProps<typeof section>>
+type SectionProps = PropsWithChildren<VariantProps<typeof stack>>
 
-export const Section = ({ children, alignment, orientation }: SectionProps) => (
-  <section className={section({ alignment, orientation })}>{children}</section>
+export const Stack = ({ children, alignment, orientation }: SectionProps) => (
+  <div className={stack({ alignment, orientation })}>{children}</div>
 )

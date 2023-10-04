@@ -1,31 +1,62 @@
-import { cx } from 'class-variance-authority'
+import { cva, cx, VariantProps } from 'class-variance-authority'
+import { PropsWithChildren } from 'react'
 
-type TooltipProps = {
-  className?: string
-  label: string
-}
+const tooltip = cva(
+  cx(
+    'inline-block',
+    'relative',
+    'text-center',
 
-export const Tooltip = ({ className, label }: TooltipProps) => (
-  <span
-    className={cx(
-      className,
-      'absolute',
-      'bg-black',
-      'p-2',
-      'rounded-md',
-      'text-white',
-      'text-xs',
-    )}
-  >
-    {label}
-    <svg
-      aria-hidden="true"
-      width="16"
-      height="6"
-      viewBox="0 0 16 6"
-      className="absolute top-full left-1/2 -mt-px -ml-2"
-    >
-      <path d="M15 0H1V1.00366V1.00366V1.00371H1.01672C2.72058 1.0147 4.24225 2.74704 5.42685 4.72928C6.42941 6.40691 9.57154 6.4069 10.5741 4.72926C11.7587 2.74703 13.2803 1.0147 14.9841 1.00371H15V0Z" />
-    </svg>
-  </span>
+    'after:-translate-x-1/2',
+    'after:absolute',
+    'after:block',
+    'after:border-4',
+    'after:border-b-transparent',
+    'after:border-t-dark-base-100',
+    'after:border-x-transparent',
+    'after:bottom-[calc(100%-0.25rem)]',
+    'after:content-[""]',
+    'after:left-1/2',
+    'after:opacity-0',
+    'after:right-auto',
+    'after:top-auto',
+
+    'before:-translate-x-1/2',
+    'before:absolute',
+    'before:bg-dark-base-100',
+    'before:bottom-[calc(100%+0.25rem)]',
+    'before:content-[attr(data-label)]',
+    'before:inline-block',
+    'before:left-1/2',
+    'before:opacity-0',
+    'before:p-2',
+    'before:right-auto',
+    'before:rounded-lg',
+    'before:text-dark-base-content',
+    'before:text-xs',
+    'before:top-auto',
+
+    'dark:after:border-t-base-100',
+    'dark:before:bg-base-100',
+    'dark:before:text-base-content',
+  ),
+  {
+    variants: {
+      variant: {
+        hover: ['hover:after:opacity-100', 'hover:before:opacity-100'],
+        force: ['after:opacity-100', 'before:opacity-100'],
+      },
+    },
+  },
+)
+
+type TooltipProps = VariantProps<typeof tooltip> &
+  PropsWithChildren<{
+    label: string
+  }>
+
+export const Tooltip = ({ children, label, variant }: TooltipProps) => (
+  <div className={tooltip({ variant })} data-label={label}>
+    {children}
+  </div>
 )

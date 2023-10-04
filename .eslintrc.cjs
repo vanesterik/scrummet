@@ -11,4 +11,12 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   root: true,
+  rules: {
+    'fp/no-mutation': [
+      'error',
+      {
+        exceptions: [{ property: 'argTypes' }],
+      },
+    ],
+  },
 }

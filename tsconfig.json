@@ -18,6 +18,6 @@
     "target": "ES2020",
     "useDefineForClassFields": true
   },
-  "include": ["src"],
+  "include": [".ladle/components.tsx", "src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

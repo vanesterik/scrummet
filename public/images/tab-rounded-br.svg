@@ -1,0 +1,10 @@
+<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M41 15V39H-23V-25H1V7C1 11.4183 4.58172 15 9 15H41Z"
+    fill="#FFFFFF"
+  />
+  <path
+    d="M41 39V15H9C4.58172 15 1 11.4183 1 7V-25H-23V39H41ZM-22 38V-24H0V7C0 11.9706 4.02944 16 9 16H40V38H-22Z"
+    fill="#D4D4D8"
+  />
+</svg>
