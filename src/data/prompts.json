@@ -1,22 +1,54 @@
-{
-  "bug": {
-    "label": "Bug",
-    "name": "bug",
-    "prompt": "Please describe the bug you found."
+[
+  {
+    "type": "bug",
+    "label": "Bug Ticket",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a bug reporter."
+      }
+    ]
   },
-  "documentation": {
+  {
+    "type": "documentation",
     "label": "Documentation",
-    "name": "documentation",
-    "prompt": "Please describe the document you have."
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a solution architect."
+      }
+    ]
   },
-  "story": {
-    "name": "story",
-    "label": "Story",
-    "prompt": "Please describe the story you would like to see."
+  {
+    "type": "story",
+    "label": "User Story",
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a business analyst."
+      },
+      {
+        "role": "user",
+        "content": "Return result in markdown format."
+      },
+      {
+        "role": "user",
+        "content": "Structure result in h2 headers: Summary, Functional notes, Acceptance criteria, Test notes."
+      },
+      {
+        "role": "user",
+        "content": "Write a user story based on the following statement:"
+      }
+    ]
   },
-  "task": {
-    "name": "task",
+  {
+    "type": "task",
     "label": "Task",
-    "prompt": "Please describe the task you would like to see."
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are a software engineer."
+      }
+    ]
   }
-}
+]
