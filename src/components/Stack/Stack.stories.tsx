@@ -15,28 +15,34 @@ const Element = () => (
 )
 
 const Template = ({
-  alignment,
   orientation,
+  size,
 }: {
-  alignment: 'left' | 'right'
   orientation: 'horizontal' | 'vertical'
+  size: 'small' | 'medium' | 'large'
 }) => (
-  <Stack alignment={alignment} orientation={orientation}>
+  <Stack orientation={orientation} size={size}>
     <Element />
     <Element />
     <Element />
   </Stack>
 )
 
-export const HorizontalLeft = () => (
-  <Template alignment="left" orientation="horizontal" />
+export const HorizontalSmall = () => (
+  <Template orientation="horizontal" size="small" />
 )
-export const HorizontalRight = () => (
-  <Template alignment="right" orientation="horizontal" />
+export const HorizontalMedium = () => (
+  <Template orientation="horizontal" size="medium" />
 )
-export const VerticalLeft = () => (
-  <Template alignment="left" orientation="vertical" />
+export const HorizontalLarge = () => (
+  <Template orientation="horizontal" size="large" />
 )
-export const VerticalRight = () => (
-  <Template alignment="right" orientation="vertical" />
+export const VerticalSmall = () => (
+  <Template orientation="vertical" size="small" />
+)
+export const VerticalMedium = () => (
+  <Template orientation="vertical" size="medium" />
+)
+export const VerticalLarge = () => (
+  <Template orientation="vertical" size="large" />
 )

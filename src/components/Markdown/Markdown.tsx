@@ -6,7 +6,15 @@ type MarkdownProps = {
 }
 
 export const Markdown = ({ content }: MarkdownProps) => (
-  <ReactMarkdown className={cx('prose', 'prose-base', 'dark:prose-invert')}>
+  <ReactMarkdown
+    className={cx(
+      'max-w-none',
+      'prose',
+      'prose-base',
+      'w-full',
+      'dark:prose-invert',
+    )}
+  >
     {content}
   </ReactMarkdown>
 )

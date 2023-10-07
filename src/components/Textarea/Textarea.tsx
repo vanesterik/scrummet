@@ -1,7 +1,7 @@
 import { cva, cx, VariantProps } from 'class-variance-authority'
-import { TextareaHTMLAttributes, useEffect, useState } from 'react'
+import { forwardRef, TextareaHTMLAttributes, useEffect, useState } from 'react'
 
-import { getLabel } from '../../utils'
+import { copyToClipboard, getLabel } from '../../utils'
 import { Button } from '../Button'
 import { Icon } from '../Icon'
 import { Tooltip } from '../Tooltip'
@@ -28,8 +28,8 @@ const textarea = cva(
   ),
   {
     variants: {
-      isInvalid: {
-        true: ['border-error'],
+      hasError: {
+        true: ['border-error', 'dark:border-dark-error'],
       },
       size: {
         small: ['h-18'],
@@ -46,20 +46,12 @@ const textarea = cva(
 type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   VariantProps<typeof textarea>
 
-export const Textarea = ({
-  isInvalid,
-  onChange,
-  placeholder,
-  size,
-  value,
-}: TextareaProps) => (
-  <textarea
-    className={textarea({ isInvalid, size })}
-    onChange={onChange}
-    placeholder={placeholder}
-    value={value}
-  />
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ hasError, size, ...rest }, ref) => (
+    <textarea className={textarea({ hasError, size })} {...rest} ref={ref} />
+  ),
 )
+Textarea.displayName = 'Textarea'
 
 export const TextareaWithCopyButton = (props: TextareaProps) => {
   const { value } = props
@@ -86,9 +78,7 @@ export const TextareaWithCopyButton = (props: TextareaProps) => {
           <Button
             onClick={() => {
               if (value)
-                navigator.clipboard
-                  .writeText(`${value}`)
-                  .then(() => setIsCopied(true))
+                copyToClipboard(`${value}`).then(() => setIsCopied(true))
             }}
             size="small"
             type="button"

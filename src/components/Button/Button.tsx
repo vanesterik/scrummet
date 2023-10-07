@@ -4,9 +4,12 @@ import { ButtonHTMLAttributes } from 'react'
 const button = cva(
   cx(
     'cursor-pointer',
+    'flex-row',
+    'flex',
     'font-semibold',
-    'select-none',
+    'gap-x-2',
     'rounded-md',
+    'select-none',
     'focus:outline',
     'focus:outline-1',
     'focus:outline-base-300',

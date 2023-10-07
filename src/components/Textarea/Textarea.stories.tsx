@@ -3,17 +3,17 @@ import { useState } from 'react'
 import { Textarea, TextareaWithCopyButton } from './Textarea'
 
 const Template = ({
-  isInvalid = false,
+  hasError = false,
   size,
 }: {
-  isInvalid?: boolean
+  hasError?: boolean
   size?: 'small' | 'medium' | 'large'
 }) => {
   const [value, setValue] = useState('')
 
   return (
     <Textarea
-      isInvalid={isInvalid}
+      hasError={hasError}
       onChange={(event) => setValue(event.target.value)}
       placeholder="Placeholder"
       value={value}
@@ -25,7 +25,7 @@ const Template = ({
 export const Small = () => <Template size="small" />
 export const Medium = () => <Template size="medium" />
 export const Large = () => <Template size="large" />
-export const WithInvalidation = () => <Template isInvalid />
+export const WithError = () => <Template hasError />
 
 export const WithCopyButton = () => {
   const [value, setValue] = useState('')

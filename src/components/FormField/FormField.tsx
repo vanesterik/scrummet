@@ -29,11 +29,7 @@ export const FormField = ({
       </label>
     )}
     {some(error, hint) && (
-      <span
-        className={cx('text-xs', {
-          ['text-error']: !!error,
-        })}
-      >
+      <span className={cx('text-xs', !!error && 'text-error')}>
         {error || hint}
       </span>
     )}

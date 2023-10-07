@@ -13,7 +13,7 @@ export const Layout = ({ children }: LayoutProps) => (
         'flex-auto',
         'max-w-2xl',
         'mx-auto',
-        'my-10',
+        'my-20',
         'px-4',
         'w-full',
         'sm:px-6',
@@ -31,6 +31,20 @@ export const Layout = ({ children }: LayoutProps) => (
         'sm:px-6',
         'md:px-8',
       )}
-    />
+    >
+      <div
+        className={cx('py-4', 'text-base-content/30', 'text-xs', 'text-center')}
+      >
+        Licensed under the{' '}
+        <a
+          className={cx('underline')}
+          href="https://opensource.org/license/mit/"
+          rel="nofollow noreferrer"
+          target="_blank"
+        >
+          MIT License
+        </a>
+      </div>
+    </footer>
   </div>
 )
