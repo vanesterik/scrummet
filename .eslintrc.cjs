@@ -15,8 +15,9 @@ module.exports = {
     'fp/no-mutation': [
       'error',
       {
-        exceptions: [{ property: 'argTypes' }],
+        exceptions: [{ property: 'argTypes' }, { property: 'displayName' }],
       },
     ],
+    'fp/no-rest-parameters': 'off',
   },
 }
