@@ -1,6 +1,6 @@
 import { cva, VariantProps } from 'class-variance-authority'
 
-const icon = cva(['font-icon', 'text-base'], {
+const icon = cva(['font-icon', 'text-2xl'], {
   variants: {
     name: {
       copy: "before:content-['a']",

@@ -29,11 +29,11 @@
       },
       {
         "role": "user",
-        "content": "Return result in markdown format."
+        "content": "Apply markdown format."
       },
       {
         "role": "user",
-        "content": "Structure result in h2 headers: Summary, Functional notes, Acceptance criteria, Test notes."
+        "content": "Structure in chapters: Summary, Acceptance Criteria and Test Notes."
       },
       {
         "role": "user",

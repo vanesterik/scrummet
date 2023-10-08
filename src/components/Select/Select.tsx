@@ -21,15 +21,17 @@ const select = cva(
     'text-sm',
     'w-full',
 
+    'focus:border-primary',
     'focus:outline',
-    'focus:outline-1',
-    'focus:outline-base-300',
-    'focus:outline-offset-2',
+    'focus:outline-4',
+    'focus:outline-primary/10',
 
     'dark:bg-[url(/images/dark-select-caret.svg)]',
     'dark:bg-dark-base-100',
     'dark:border-dark-base-300',
-    'dark:focus:outline-dark-base-300',
+
+    'dark:focus:border-dark-primary',
+    'dark:focus:outline-dark-primary/10',
   ),
   {
     variants: {

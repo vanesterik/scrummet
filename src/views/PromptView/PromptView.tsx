@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { cx } from 'class-variance-authority'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
@@ -34,6 +35,8 @@ export const PromptView = () => {
     reset,
     watch,
   } = useForm<PromptFormInputs>()
+
+  const selectedPromptType = watch('type')
 
   const onSubmit: SubmitHandler<PromptFormInputs> = ({ type, content }) => {
     setIsLoading(true)
@@ -101,7 +104,12 @@ export const PromptView = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack alignment="right" size="medium">
-        <FormField name="type" error={parseError(errors.type?.message)}>
+        <FormField
+          hint="Start by selecting a prompt type, reviewing the instructions, and then submitting your statement."
+          label="Scrum Some Content"
+          name="type"
+          error={parseError(errors.type?.message)}
+        >
           <Select
             id="type"
             hasError={!!errors.type}
@@ -117,21 +125,28 @@ export const PromptView = () => {
             ))}
           </Select>
         </FormField>
-        <PromptInstructions type={watch('type')} />
-        <FormField name="content" error={parseError(errors.content?.message)}>
-          <Textarea
-            id="content"
-            hasError={!!errors.content}
-            placeholder="Write your statement ..."
-            {...register('content', {
-              required: 'Submitting statement is required',
-            })}
-          />
-        </FormField>
-        <Button disabled={isLoading} variant="primary">
-          {isLoading && <Spinner />}
-          {'Submit'}
-        </Button>
+        {selectedPromptType && (
+          <>
+            <PromptInstructions type={selectedPromptType} />
+            <FormField
+              name="content"
+              error={parseError(errors.content?.message)}
+            >
+              <Textarea
+                id="content"
+                hasError={!!errors.content}
+                placeholder="Write your statement ..."
+                {...register('content', {
+                  required: 'Submitting statement is required',
+                })}
+              />
+            </FormField>
+            <Button disabled={isLoading} variant="primary">
+              {isLoading && <Spinner />}
+              {'Submit'}
+            </Button>
+          </>
+        )}
       </Stack>
     </form>
   )
@@ -143,11 +158,26 @@ type PromptInstructionsProps = {
 
 const PromptInstructions = ({ type }: PromptInstructionsProps) => {
   const messages = prompts.find((prompt) => prompt.type === type)?.messages
-  const instructions = messages
-    ?.map((message) => `- ${message.content}`)
-    .join('\n')
+  const instructions = messages?.map(({ content }) => content)
 
   if (!instructions) return null
 
-  return <Markdown content={instructions} />
+  return (
+    <ul className={cx('flex', 'flex-col', 'gap-y-2', 'w-full')}>
+      {instructions.map((instruction) => (
+        <li
+          className={cx(
+            'bg-primary/5',
+            'px-4',
+            'py-3',
+            'rounded-md',
+            'text-sm',
+          )}
+          key={instruction}
+        >
+          {instruction}
+        </li>
+      ))}
+    </ul>
+  )
 }
