@@ -39,11 +39,11 @@ jobs:
       - name: Setup pages
         run: actions/configure-pages@v3
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          path: dist
+          path: './dist'
 
       - name: Deploy application
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v1
