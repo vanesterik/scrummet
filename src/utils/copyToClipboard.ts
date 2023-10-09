@@ -3,7 +3,8 @@ export const copyToClipboard = async (value: string) => {
     if (navigator?.clipboard?.writeText) {
       await navigator.clipboard.writeText(value)
     } else {
-      console.error('writeText not supported')
+      // eslint-disable-next-line fp/no-throw
+      throw new Error('writeText not supported')
     }
   } catch (e) {
     const tempTextArea = document.createElement('textarea')
