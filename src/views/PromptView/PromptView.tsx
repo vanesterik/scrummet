@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { cx } from 'class-variance-authority'
+import copy from 'copy-to-clipboard'
 import { useEffect, useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
@@ -15,7 +16,7 @@ import {
 } from '../../components'
 import { useGlobalState } from '../../containers'
 import prompts from '../../data/prompts.json'
-import { copyToClipboard, parseError } from '../../utils'
+import { parseError } from '../../utils'
 
 type PromptFormInputs = {
   type: string
@@ -80,9 +81,10 @@ export const PromptView = () => {
         <Stack orientation="horizontal">
           <Tooltip label="Copied!" variant={hasCopied ? 'force' : undefined}>
             <Button
-              onClick={() =>
-                copyToClipboard(result).then(() => setHasCopied(true))
-              }
+              onClick={() => {
+                copy(result)
+                setHasCopied(true)
+              }}
               variant="secondary"
             >
               {'Copy'}

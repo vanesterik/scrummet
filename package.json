@@ -8,6 +8,7 @@
     "@ladle/react": "^2.17.2",
     "axios": "^1.5.1",
     "class-variance-authority": "^0.7.0",
+    "copy-to-clipboard": "^3.3.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",

@@ -1,10 +1,5 @@
 import { cva, cx, VariantProps } from 'class-variance-authority'
-import { forwardRef, TextareaHTMLAttributes, useEffect, useState } from 'react'
-
-import { copyToClipboard, getLabel } from '../../utils'
-import { Button } from '../Button'
-import { Icon } from '../Icon'
-import { Tooltip } from '../Tooltip'
+import { forwardRef, TextareaHTMLAttributes } from 'react'
 
 const textarea = cva(
   cx(
@@ -54,42 +49,3 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ),
 )
 Textarea.displayName = 'Textarea'
-
-export const TextareaWithCopyButton = (props: TextareaProps) => {
-  const { value } = props
-  const [isCopied, setIsCopied] = useState(false)
-
-  useEffect(() => {
-    if (!isCopied) return
-
-    const timer = setTimeout(() => {
-      setIsCopied(false)
-    }, 1500)
-
-    return () => clearTimeout(timer)
-  }, [isCopied])
-
-  return (
-    <div className={cx('relative', 'w-full')}>
-      <Textarea {...props} />
-      <div className={cx('absolute', 'right-2', 'top-2', 'z-10')}>
-        <Tooltip
-          label={getLabel('form.textarea.tooltip')}
-          variant={isCopied ? 'force' : undefined}
-        >
-          <Button
-            onClick={() => {
-              if (value)
-                copyToClipboard(`${value}`).then(() => setIsCopied(true))
-            }}
-            size="small"
-            type="button"
-            variant="link"
-          >
-            <Icon name="copy" />
-          </Button>
-        </Tooltip>
-      </div>
-    </div>
-  )
-}
